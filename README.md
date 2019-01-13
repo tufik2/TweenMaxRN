@@ -1,6 +1,6 @@
 # TweenMaxRN
 
-Special tanks to @skevy to create the first pluging using state.
+Special tanks to @hzdg to create the first pluging using state.
 
 - This repo extend the functionalities of TweenMax to work with Direct Manipulation, reaching a good performance in complex animations.
 - With this library is possible animate Styles and Transform properties.
