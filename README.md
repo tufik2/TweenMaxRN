@@ -5,9 +5,17 @@ Special tanks to @hzdg to create the first pluging using state.
 - This repo open TweenMax to work with Direct Manipulation, reaching a good performance in complex animations.
 - With this library is possible animate Styles and Transform properties.
 
-// COMPILE APK
-1. Connect device with USB debuggin enabled Or Open Android Virtual Device
-2. Open Console
-	> yarn install
-	> npm run android-clean
-	> npm start
+# How use
+
+- Include src/libs/TweenMaxRN.js in your project library folder
+- Requere bouth libraries in your component.js 
+ 	> require("gsap");
+	> require("src/libs/TweenMaxRN");
+
+# COMPILE APK DEMO
+1. Clone this repository
+2. Connect device with USB debuggin enabled Or Open Android Virtual Device
+3. Open Console
+	- yarn install
+	- npm run android-clean
+	- npm start
