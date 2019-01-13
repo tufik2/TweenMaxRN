@@ -8,9 +8,9 @@ Special tanks to @hzdg to create the first pluging using state.
 # How use
 
 - Include src/libs/TweenMaxRN.js in your project library folder
-- Requere bouth libraries in your component.js 
- 	> require("gsap");
-	> require("src/libs/TweenMaxRN");
+- Import both libraries in your React Component
+ 	- require("gsap");
+	- require("src/libs/TweenMaxRN");
 
 # COMPILE APK DEMO
 1. Clone this repository
