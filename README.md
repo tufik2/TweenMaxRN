@@ -20,10 +20,6 @@ TweenMax.fromTo(this.refs.view, 3, {style: {opacity: 0}, transform:{ translateY:
 
 <View ref="view" ></View>
 ```
-	
-	
-	
-	
 
 # COMPILE APK DEMO
 1. Clone this repository
