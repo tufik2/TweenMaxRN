@@ -11,6 +11,19 @@ Special tanks to @hzdg to create the first pluging using state.
 - Import both libraries in your React Component
  	- require("gsap");
 	- require("src/libs/TweenMaxRN");
+	
+```javascript
+require("gsap");
+require("src/libs/TweenMaxRN");
+
+TweenMax.fromTo(this.refs.view, 3, {style: {opacity: 0}, transform:{ translateY:200 } }, {style: {opacity: 1}, transform:{ translateY:0 }});
+
+<View ref="view" ></View>
+```
+	
+	
+	
+	
 
 # COMPILE APK DEMO
 1. Clone this repository
@@ -21,4 +34,5 @@ Special tanks to @hzdg to create the first pluging using state.
 	- npm start
 	
 Download APK: https://www.dropbox.com/s/8o8n1bsgxw489gf/app-release.apk?dl=0
+
 ![animation](http://int-server-one.info/cloudbit/tweenmaxRN.gif)
