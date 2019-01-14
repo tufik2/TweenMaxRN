@@ -19,3 +19,6 @@ Special tanks to @hzdg to create the first pluging using state.
 	- yarn install
 	- npm run android-clean
 	- npm start
+	
+Download APK: https://www.dropbox.com/s/8o8n1bsgxw489gf/app-release.apk?dl=0
+![animation](http://int-server-one.info/cloudbit/tweenmaxRN.gif)
