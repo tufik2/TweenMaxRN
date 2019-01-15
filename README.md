@@ -41,5 +41,7 @@ timeline.add("end");
 	- npm start
 	
 Download APK: https://www.dropbox.com/s/8o8n1bsgxw489gf/app-release.apk?dl=0
+
 Video: https://www.dropbox.com/s/ioghw2t7ua5agpn/video.mp4?dl=0
+
 ![animation](http://int-server-one.info/cloudbit/tweenmaxRN.gif)
