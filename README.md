@@ -4,7 +4,8 @@ Special tanks to @hzdg to create the first pluging using state.
 
 - This repo open TweenMax to work with Direct Manipulation, reaching a good performance in complex animations.
 - With this library is possible animate Styles and Transform properties.
-- Is important note that for reactNative you need always specify the initial params before animate its.
+- Is important to note that for reactNative you need always specify the initial params before animate its.
+- The performance using Direct Manipulation is really good, specially when we compile our app in release version.
 
 # How use
 
