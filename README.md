@@ -17,7 +17,7 @@ Special tanks to @hzdg to create the first pluging using state.
 	- require("src/libs/TweenMaxRN");
 	
 ```javascript
-require("gsap");
+import {TimelineMax} from "gsap";
 require("src/libs/TweenMaxRN");
 
 TweenMax.fromTo(this.refs.view, 3, {style: {opacity: 0}, transform:{ translateY:200 } }, {style: {opacity: 1}, transform:{ translateY:0 }});
