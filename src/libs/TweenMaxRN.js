@@ -1,6 +1,10 @@
 /* TweenMax RN v.0.0.2
-    require('gsap');
     Example:
+        1. npm install gsap
+        2. import TweenMaxRN.js in your file
+            import {TimelineMax} from "gsap";
+            require("src/libs/TweenMaxRN");
+
       TweenMax.fromTo(this.refs.view, 3, {style: {opacity: 0}, transform:{ translateY:200 } }, {style: {opacity: 1}, transform:{ translateY:0 }  } );
       <View ref="view" ... ></View>
 */
