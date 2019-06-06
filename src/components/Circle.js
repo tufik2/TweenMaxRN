@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, Dimensions} from "react-native";
 import {cuppa, CuppaStyles} from "src/libs/cuppa";
-require("gsap");
+import {TimelineMax} from "gsap";
 require("src/libs/TweenMaxRN");
 
 export class Circle extends Component {

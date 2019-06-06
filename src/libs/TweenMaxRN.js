@@ -54,12 +54,12 @@ window._gsQueue.push(function() {
             if(!target) return false;
             this._target = target;
             this._tween = {};
-            for (p in value) {
+            for (let p in value) {
                 let end = value[p];
                 let realProp = p;
                 if(realProp == "alpha") realProp = "opacity";
                 let start = 0;
-                if(this._target.gsStyle) start = this._target.gsStyle[p];
+                if(this._target.gsStyle){ start = this._target.gsStyle[p]; }
                 this._tween[p] = start;
                 this._addTween(this._tween, p, start, end, p);
             }
@@ -67,17 +67,18 @@ window._gsQueue.push(function() {
         },
         set: function(ratio) {
             if(!this._target || !this._target.setNativeProps) return false;
+            if(!this._target.gsStyle) this._target.gsStyle = {};
             this._super.setRatio.call(this, ratio);
-            var value = this._tween;
-            for (p in value) {
+            let value = this._tween;
+            for (let p in value) {
                 let realProp = p;
-                if(realProp === "alpha") realProp = "opacity";
-                if(realProp === "position" && value[p] === 0) continue;
-                if(realProp === "alignItems" && value[p] === 0) continue;
-                if(realProp === "justifyContent" && value[p] === 0) continue;
+                if(realProp == "alpha") realProp = "opacity";
+                if(realProp == "position" && value[p] === 0) continue;
+                if(realProp == "alignItems" && value[p] === 0) continue;
+                if(realProp == "justifyContent" && value[p] === 0) continue;
                 this._target.setNativeProps({style:{[realProp]:value[p]}  } );
+                this._target.gsStyle[p] = value[p];
             }
-            this._target.gsStyle = value;
         }
     });
 });
@@ -93,29 +94,39 @@ window._gsQueue.push(function() {
             if(!target) return false;
             this._target = target;
             this._tween = {};
-            for (p in value) {
+            for (let p in value) {
                 let end = value[p];
                 let start = 0;
-                if(this._target.gsTransform) start = this._target.gsTransform[p];
+                if(this._target.gsTransform){ start = this._target.gsTransform[p]; }
                 this._tween[p] = start;
                 this._addTween(this._tween, p, start, end, p);
+            }
+
+            let previewValues = this._target.gsTransform || {}
+            for (let p in previewValues) {
+                if(value[p] == undefined){
+                    this._tween[p] = previewValues[p];
+                    this._addTween(this._tween, p, previewValues[p], previewValues[p], p);
+                }
             }
             return true;
         },
         set: function(ratio) {
             if(!this._target || !this._target.setNativeProps) return false;
+            if(!this._target.gsTransform) this._target.gsTransform = {};
             this._super.setRatio.call(this, ratio);
-            var value = this._tween;
-            var values = [];
-            for (p in value) {
+            let value = this._tween;
+            let values = [];
+            for (let p in value) {
                 let realProp = p;
-                if(realProp === "x") realProp = "translateX";
-                if(realProp === "y") realProp = "translateY";
-                if(realProp === "rotate" && value[p] === 0) value[p] = "0deg";
+                if(realProp == "x") realProp = "translateX";
+                if(realProp == "y") realProp = "translateY";
+                if(realProp == "rotate" && value[p] == 0) value[p] = "0deg";
+                if(realProp != "rotate") value[p] = parseFloat(value[p]);
                 values.push( {[realProp]:value[p]} );
+                this._target.gsTransform[p] = value[p];
             }
             this._target.setNativeProps({style:{transform:values}});
-            this._target.gsTransform = value;
         }
     });
 });
@@ -131,7 +142,7 @@ window._gsQueue.push(function() {
             if(!target) return false;
             this._target = target;
             this._tween = {};
-            for (p in value) {
+            for (let p in value) {
                 let end = value[p];
                 let realProp = p;
                 if(realProp == "alpha") realProp = "opacity";
@@ -145,13 +156,13 @@ window._gsQueue.push(function() {
         set: function(ratio) {
             if(!this._target || !this._target.setNativeProps) return false;
             this._super.setRatio.call(this, ratio);
-            var value = this._tween;
-            for (p in value) {
+            let value = this._tween;
+            for (let p in value) {
                 let realProp = p;
                 if(realProp == "alpha") realProp = "opacity";
                 this._target.setNativeProps({[realProp]:value[p]});
             }
-            this._target.gsStyle = value;
+            this._target.gsStyle[p] = value;
         }
     });
 });

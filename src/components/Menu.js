@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View, Image, ScrollView, Dimensions, TouchableWithoutFeedback, TouchableOpacity} from "react-native";
 import {StatusBarComp, cuppa, CuppaStyles} from "src/libs/cuppa"
-require("gsap");
+import {TimelineMax} from "gsap";
 require("src/libs/TweenMaxRN");
 
 const   data = [{name:"naranja", color:"#F67826"},
@@ -44,8 +44,8 @@ export class Menu extends Component {
 
     animation(){
         this.timeline = new TimelineMax();
-        this.timeline.add("init");
         this.timeline.set(this.refs.menu, {style:{backgroundColor: "transparent"}});
+        this.timeline.add("init");
         this.timeline.set(this.refs.ballBack, {style:{width:60, height:60, backgroundColor:"#fff", position:"absolute", top:StatusBarComp.height() + 20, right:20, borderRadius:50}, transform:{scaleY:1, scaleX:1}});
         this.timeline.set(this.refs.mainButton, {style:{width:60, height:60, backgroundColor:"#fff", position: "absolute", top:StatusBarComp.height() + 20, right:20, borderRadius:50, alignItems: "center", justifyContent:"center"} });
         this.timeline.set(this.refs.buttons, {style:{ position:"absolute", left:0, right:0, bottom:0, top:StatusBarComp.height() + 0}, transform:{translateY:-Dimensions.get('window').height} });
@@ -58,6 +58,7 @@ export class Menu extends Component {
         this.timeline.add(()=>{ StatusBarComp.barStyle("dark-content") }, 0.3);
         this.timeline.add("end");
         this.timeline.stop();
+        this.timeline.tweenFromTo(0.01, 0);
     }
 
     render() {
