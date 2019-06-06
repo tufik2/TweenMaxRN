@@ -10,8 +10,10 @@ Special tanks to @hzdg to create the first pluging using state.
 # How use
 
 - Include src/libs/TweenMaxRN.js in your project library folder
+- Install gsap
+        - npm install gsap
 - Import both libraries in your React Component
- 	- require("gsap");
+ 	- import {TimelineMax} from "gsap";
 	- require("src/libs/TweenMaxRN");
 	
 ```javascript
