@@ -1,4 +1,4 @@
-/* TweenMax RN
+/* TweenMax RN v.0.0.2
     require('gsap');
     Example:
       TweenMax.fromTo(this.refs.view, 3, {style: {opacity: 0}, transform:{ translateY:200 } }, {style: {opacity: 1}, transform:{ translateY:0 }  } );
@@ -10,7 +10,7 @@ window._gsQueue.push(function() {
     return window._gsDefine.plugin({
         propName: 'state',
         API: 2,
-        version: '1.0.2',
+        version: '0.0.2',
         init: function(target, value, tween) {
             var end, p, start, _ref, _ref1, _ref2;
             if (typeof target.setState !== 'function') {
@@ -49,7 +49,7 @@ window._gsQueue.push(function() {
         propName: 'style',
         priority: 0,
         API: 2,
-        version: '0.0.1',
+        version: '0.0.2',
         init: function(target, value, tween, index) {
             if(!target) return false;
             this._target = target;
@@ -89,7 +89,7 @@ window._gsQueue.push(function() {
         propName: 'transform',
         priority: 0,
         API: 2,
-        version: '0.0.1',
+        version: '0.0.2',
         init: function(target, value, tween, index) {
             if(!target) return false;
             this._target = target;
@@ -137,7 +137,7 @@ window._gsQueue.push(function() {
         propName: 'attr',
         priority: 0,
         API: 2,
-        version: '0.0.1',
+        version: '0.0.2',
         init: function(target, value, tween, index) {
             if(!target) return false;
             this._target = target;
