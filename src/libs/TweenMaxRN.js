@@ -1,4 +1,4 @@
-/* TweenMax RN v.0.0.2
+/* TweenMax RN v.0.0.3
     Example:
         1. npm install gsap
         2. import TweenMaxRN.js in your file
@@ -14,9 +14,9 @@ window._gsQueue.push(function() {
     return window._gsDefine.plugin({
         propName: 'state',
         API: 2,
-        version: '0.0.2',
+        version: '0.0.3',
         init: function(target, value, tween) {
-            var end, p, start, _ref, _ref1, _ref2;
+            let end, p, start, _ref, _ref1, _ref2;
             if (typeof target.setState !== 'function') {
                 return false;
             }
@@ -35,7 +35,7 @@ window._gsQueue.push(function() {
             return true;
         },
         set: function(ratio) {
-            var k, v, _ref;
+            let k, v, _ref;
             this._super.setRatio.call(this, ratio);
             _ref = this._tween;
             for (k in _ref) {
@@ -53,36 +53,31 @@ window._gsQueue.push(function() {
         propName: 'style',
         priority: 0,
         API: 2,
-        version: '0.0.2',
-        init: function(target, value, tween, index) {
-            if(!target) return false;
-            this._target = target;
-            this._tween = {};
-            for (let p in value) {
-                let end = value[p];
-                let realProp = p;
-                if(realProp == "alpha") realProp = "opacity";
-                let start = 0;
-                if(this._target.gsStyle){ start = this._target.gsStyle[p]; }
-                this._tween[p] = start;
-                this._addTween(this._tween, p, start, end, p);
+        version: '0.0.3',
+        init: function(target, values, tween, index) {
+            if(!target) return;
+            this.target = target;
+            if (target.tweenStyle == null){ target.tweenStyle = {}; }
+            for (let prop in values) {
+                target.tweenStyle[prop] = (target.tweenStyle[prop]) ? target.tweenStyle[prop] : 0;
+                this._addTween(target.tweenStyle, prop, target.tweenStyle[prop], values[prop], prop);
             }
             return true;
         },
         set: function(ratio) {
-            if(!this._target || !this._target.setNativeProps) return false;
-            if(!this._target.gsStyle) this._target.gsStyle = {};
             this._super.setRatio.call(this, ratio);
-            let value = this._tween;
-            for (let p in value) {
-                let realProp = p;
+            let target = this.target;
+            let data = [];
+            for (let prop in target.tweenStyle) {
+                let realProp = prop;
+                let value = target.tweenStyle[prop];
                 if(realProp == "alpha") realProp = "opacity";
                 if(realProp == "position" && value[p] === 0) continue;
                 if(realProp == "alignItems" && value[p] === 0) continue;
                 if(realProp == "justifyContent" && value[p] === 0) continue;
-                this._target.setNativeProps({style:{[realProp]:value[p]}  } );
-                this._target.gsStyle[p] = value[p];
+                data.push( {[realProp]:value} );
             }
+            target.setNativeProps({style:data});
         }
     });
 });
@@ -93,44 +88,31 @@ window._gsQueue.push(function() {
         propName: 'transform',
         priority: 0,
         API: 2,
-        version: '0.0.2',
-        init: function(target, value, tween, index) {
-            if(!target) return false;
-            this._target = target;
-            this._tween = {};
-            for (let p in value) {
-                let end = value[p];
-                let start = 0;
-                if(this._target.gsTransform){ start = this._target.gsTransform[p]; }
-                this._tween[p] = start;
-                this._addTween(this._tween, p, start, end, p);
-            }
-
-            let previewValues = this._target.gsTransform || {}
-            for (let p in previewValues) {
-                if(value[p] == undefined){
-                    this._tween[p] = previewValues[p];
-                    this._addTween(this._tween, p, previewValues[p], previewValues[p], p);
-                }
+        version: '0.0.3',
+        init: function(target, values, tween, index) {
+            if(!target) return;
+            this.target = target;
+            if (target.tweenTransform == null){ target.tweenTransform = {}; }
+            for (let prop in values) {
+                target.tweenTransform[prop] = (target.tweenTransform[prop]) ? target.tweenTransform[prop] : 0;
+                this._addTween(target.tweenTransform, prop, target.tweenTransform[prop], values[prop], prop);
             }
             return true;
         },
         set: function(ratio) {
-            if(!this._target || !this._target.setNativeProps) return false;
-            if(!this._target.gsTransform) this._target.gsTransform = {};
             this._super.setRatio.call(this, ratio);
-            let value = this._tween;
-            let values = [];
-            for (let p in value) {
-                let realProp = p;
+            let target = this.target;
+            let data = [];
+            for (let prop in target.tweenTransform) {
+                let realProp = prop;
+                let value = target.tweenTransform[prop];
                 if(realProp == "x") realProp = "translateX";
-                if(realProp == "y") realProp = "translateY";
-                if(realProp == "rotate" && value[p] == 0) value[p] = "0deg";
-                if(realProp != "rotate") value[p] = parseFloat(value[p]);
-                values.push( {[realProp]:value[p]} );
-                this._target.gsTransform[p] = value[p];
+                if(realProp == "x") realProp = "translateY";
+                if(realProp == "rotate" && value == 0) value = "0deg";
+                if(realProp != "rotate") value = parseFloat(value);
+                data.push( {[realProp]:value} );
             }
-            this._target.setNativeProps({style:{transform:values}});
+            target.setNativeProps({transform:data});
         }
     });
 });
@@ -141,7 +123,7 @@ window._gsQueue.push(function() {
         propName: 'attr',
         priority: 0,
         API: 2,
-        version: '0.0.2',
+        version: '0.0.3',
         init: function(target, value, tween, index) {
             if(!target) return false;
             this._target = target;
@@ -151,7 +133,7 @@ window._gsQueue.push(function() {
                 let realProp = p;
                 if(realProp == "alpha") realProp = "opacity";
                 let start = 0;
-                if(this._target.gsStyle) start = this._target.gsStyle[p];
+                if(this._target.gsProp) start = this._target.gsProp[p];
                 this._tween[p] = start;
                 this._addTween(this._tween, p, start, end, p);
             }
@@ -166,7 +148,7 @@ window._gsQueue.push(function() {
                 if(realProp == "alpha") realProp = "opacity";
                 this._target.setNativeProps({[realProp]:value[p]});
             }
-            this._target.gsStyle[p] = value;
+            this._target.gsProp[p] = value;
         }
     });
 });
