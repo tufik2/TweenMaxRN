@@ -72,9 +72,9 @@ window._gsQueue.push(function() {
                 let realProp = prop;
                 let value = target.tweenStyle[prop];
                 if(realProp == "alpha") realProp = "opacity";
-                if(realProp == "position" && value[p] === 0) continue;
-                if(realProp == "alignItems" && value[p] === 0) continue;
-                if(realProp == "justifyContent" && value[p] === 0) continue;
+                if(realProp == "position" && value === 0) continue;
+                if(realProp == "alignItems" && value === 0) continue;
+                if(realProp == "justifyContent" && value === 0) continue;
                 data.push( {[realProp]:value} );
             }
             target.setNativeProps({style:data});
