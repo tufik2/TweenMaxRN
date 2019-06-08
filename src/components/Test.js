@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, Text} from "react-native";
 import {log, cuppa} from "src/libs/cuppa";
-import {TimelineMax} from "gsap";
-require("src/libs/TweenMaxRN");
+import {TimelineMax, Elastic} from "gsap";
+import {CustomEase} from "src/libs/CustomEase";
+import "src/libs/TweenMaxRN";
 
 
 export class Test extends Component {
@@ -14,13 +15,14 @@ export class Test extends Component {
     }
 
     componentDidMount(){
+        let customEase = CustomEase.create("custom", "M0,0 C0.266,0.412 0.334,0.494 0.334,0.494 0.334,0.494 0.665,0.383 0.822,0.52 0.952,0.633 0.9,1 1,1");
         let tl = new TimelineMax();
             tl.set(this.refs.box, {transform:{translateX:10, translateY:10, scale:1}, style:{backgroundColor:"#F00"} });
             tl.to(this.refs.box, 6, {transform:{translateY:300, scale:2}}, 0);
-            tl.to(this.refs.box, 1, {transform:{translateX:200, rotate:"50deg"}}, 1);
+            tl.to(this.refs.box, 1, {transform:{translateX:200, rotate:"180deg"}, ease:Elastic.easeOut}, 1);
             tl.to(this.refs.box, 1, {transform:{translateX:300}}, 2);
             tl.to(this.refs.box, 2, {transform:{scale:1}});
-            tl.to(this.refs.box, 2, {transform:{rotate:"10deg"}, style:{backgroundColor:"#FFF"} });
+            tl.to(this.refs.box, 2, {transform:{rotate:"10deg"}, style:{backgroundColor:"#FFF"}, ease:customEase });
             tl.fromTo(this.refs.box, 4, {transform:{translateX:0}}, {transform:{translateX:200}});
             tl.fromTo(this.refs.box, 4, {transform:{translateY:0}}, {transform:{translateY:200}}, "=-4");
             tl.to(this.refs.box, 2, {transform:{rotate:"0deg"}});
@@ -31,7 +33,7 @@ export class Test extends Component {
             t2.to(this.refs.box2, 1, {style:{left:200, alpha:0.5}}, 1);
             t2.to(this.refs.box2, 1, {style:{left:100}}, 2);
             t2.to(this.refs.box2, 1, {style:{top:50, backgroundColor:"#0FF", alpha:1}});
-            t2.fromTo(this.refs.box2, 4, {style:{left:0}}, {style:{left:100}, delay:1});
+            t2.fromTo(this.refs.box2, 4, {style:{left:0}}, {style:{left:100}});
             t2.fromTo(this.refs.box2, 4, {style:{top:0}}, {style:{top:100}}, "=-4");
     }
 

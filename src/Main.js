@@ -17,11 +17,11 @@ export default class Main extends Component {
         return (
             <View style={{backgroundColor:"#9743F8", flex:1}}>
                 <StatusBarComp color={"light-content"} />
+                {/*
                 <Circle/>
                 <Menu/>
-                {/*
-                <Test />
                 */}
+                <Test />
             </View>
         );
     }
