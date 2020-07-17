@@ -1,6 +1,6 @@
 # TweenMaxRN
 
-THIS LIBRARY IS DEPRECATED, INSTEAD USE THE GSAP 3 COMPATIBILITY LIBRARY: https://github.com/cloudbit-interactive/GSAP-RN
+**THIS LIBRARY IS DEPRECATED, INSTEAD USE THE GSAP 3 COMPATIBILITY LIBRARY:** [https://github.com/cloudbit-interactive/GSAP-RN](https://github.com/cloudbit-interactive/GSAP-RN)
 
 Special tanks to @hzdg to create the first pluging using state.
 - Support for gsap: 2.1.3, we tried to give support to the new gsap 3, but look like it have many issues if a html document don't exist.
